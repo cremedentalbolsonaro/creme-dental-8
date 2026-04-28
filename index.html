@@ -50,13 +50,16 @@ nav{background:var(--white);padding:16px 6vw;display:flex;align-items:center;jus
 .hero-chip{background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);color:rgba(255,255,255,.8);font-size:.75rem;font-weight:500;padding:5px 12px;border-radius:50px}
 
 @media(max-width:720px){
-  .hero{min-height:auto}
+  .hero{min-height:100svh;flex-direction:column;justify-content:flex-end;align-items:stretch}
   .hero-bg-desktop{display:none}
-  .hero-bg-mobile{display:block}
-  .hero-overlay{background:linear-gradient(180deg,rgba(13,31,15,.45) 0%,rgba(13,31,15,.88) 55%,rgba(13,31,15,.97) 100%)}
-  .hero-content{max-width:100%;padding:260px 5vw 50px;text-align:center}
-  .hero-sub{max-width:100%}
+  .hero-bg-mobile{display:block;object-position:top center}
+  .hero-overlay{background:linear-gradient(180deg,rgba(13,31,15,0) 0%,rgba(13,31,15,.1) 35%,rgba(13,31,15,.82) 60%,rgba(13,31,15,.97) 100%)}
+  .hero-content{max-width:100%;padding:0 5vw 44px;text-align:center}
+  .hero h1{font-size:clamp(1.8rem,7vw,2.6rem)}
+  .hero-sub{font-size:.88rem;margin-bottom:22px}
+  .hero-cta{font-size:.95rem;padding:15px 28px}
   .hero-chips{justify-content:center}
+  .hero-sub{max-width:100%}
 }
 
 /* ── MARQUEE ── */
@@ -87,10 +90,12 @@ nav{background:var(--white);padding:16px 6vw;display:flex;align-items:center;jus
 .kits-grid{display:grid;gap:20px;margin-top:8px}
 .kits-5col{grid-template-columns:repeat(5,minmax(0,1fr))}
 .kits-3col{grid-template-columns:repeat(3,minmax(0,1fr));max-width:860px;margin-left:auto;margin-right:auto}
+.kits-2col{grid-template-columns:repeat(2,minmax(0,1fr));max-width:720px;margin-left:auto;margin-right:auto}
 
 @media(max-width:1150px){.kits-5col{grid-template-columns:repeat(3,minmax(0,1fr))}}
 @media(max-width:860px){.kits-5col,.kits-3col{grid-template-columns:repeat(2,minmax(0,1fr))}}
 @media(max-width:560px){.kits-5col,.kits-3col{grid-template-columns:1fr;max-width:360px;margin:8px auto 0}}
+@media(max-width:480px){.kits-2col{grid-template-columns:1fr;max-width:360px;margin:8px auto 0}}
 
 .kit-card{background:#192b1a;border:2px solid rgba(245,200,0,.12);border-radius:16px;padding:28px 18px 22px;display:flex;flex-direction:column;align-items:center;position:relative;transition:border-color .3s,transform .3s,box-shadow .3s}
 .kit-card:hover{border-color:rgba(245,200,0,.5);transform:translateY(-5px);box-shadow:0 12px 32px rgba(0,0,0,.3)}
@@ -231,10 +236,18 @@ nav{background:var(--white);padding:16px 6vw;display:flex;align-items:center;jus
 .final-btn:hover{transform:translateY(-3px)}
 
 /* ── FOOTER ── */
-footer{background:#080f09;padding:24px 6vw;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;font-size:.76rem;color:rgba(255,255,255,.3);border-top:2px solid rgba(245,200,0,.18)}
-footer a{color:rgba(255,255,255,.3);text-decoration:none}
-footer a:hover{color:var(--yellow)}
-.footer-links{display:flex;gap:20px}
+footer{background:#080f09;padding:40px 6vw;border-top:2px solid rgba(245,200,0,.18)}
+.footer-inner{display:grid;grid-template-columns:1fr auto auto;gap:40px;align-items:start}
+@media(max-width:768px){.footer-inner{grid-template-columns:1fr;gap:24px}}
+.footer-logo{font-family:'Oswald',sans-serif;font-size:1.1rem;font-weight:700;color:#fff;text-transform:uppercase;margin-bottom:6px}
+.footer-logo span{color:var(--yellow)}
+.footer-copy{font-size:.72rem;color:rgba(255,255,255,.3)}
+.footer-contacts{display:flex;flex-direction:column;gap:8px}
+.footer-contacts a{font-size:.78rem;color:rgba(255,255,255,.55);text-decoration:none;transition:color .2s}
+.footer-contacts a:hover{color:var(--yellow)}
+.footer-links{display:flex;flex-direction:column;gap:8px}
+.footer-links a{font-size:.78rem;color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s}
+.footer-links a:hover{color:var(--yellow)}
 
 /* ── REVEAL ── */
 .reveal{opacity:0;transform:translateY(22px);transition:opacity .6s ease,transform .6s ease}
@@ -280,9 +293,9 @@ footer a:hover{color:var(--yellow)}
 <div id="kits1"><section class="kits-section">
   <div class="container">
     <div class="section-label">Escolha seu Kit</div>
-    <h2 class="section-title">Kits para levar <em>mais por menos</em></h2>
+    <h2 class="section-title" style="text-align:center">Kits para levar <em>mais por menos</em></h2>
     <p class="section-sub">Quanto mais você leva, mais você economiza — e mais o Brasil sorri.</p>
-    <div class="kits-grid kits-5col">
+    <div class="kits-grid kits-3col">
 <div class="kit-card">
   
   <div class="kit-img-wrap"><img data-img="1unid" alt="1 Unidade"/></div>
@@ -329,38 +342,6 @@ footer a:hover{color:var(--yellow)}
     <div class="kit-economy">ECONOMIZE R$ 53,60</div>
     <div class="kit-free">🚚 FRETE GRÁTIS</div>
     <a href="https://creme-dental-bolsonaro.pay.yampi.com.br/r/7AAS88180X" target="_blank" class="kit-btn-primary">COMPRAR AGORA</a>
-  </div>
-</div>
-<div class="kit-card">
-  
-  <div class="kit-img-wrap"><img data-img="12unid" alt="12 Unidades"/></div>
-  <div class="kit-body">
-    <div class="kit-treatment">12 meses</div>
-    <h3 class="kit-name">12 Unidades</h3>
-    <div class="kit-prices">
-      <span class="kit-old">De R$ 299,00</span>
-      <div class="kit-new">R$ <strong>166,80</strong></div>
-      <div class="kit-unit">R$13,90 cada</div>
-    </div>
-    <div class="kit-economy">ECONOMIZE R$ 132,20</div>
-    <div class="kit-free">🚚 FRETE GRÁTIS</div>
-    <a href="https://creme-dental-bolsonaro.pay.yampi.com.br/r/SKHMPFJWJ2" target="_blank" class="kit-btn-outline">COMPRAR AGORA</a>
-  </div>
-</div>
-<div class="kit-card">
-  <div class="kit-badge kit-badge-green">🔥 MELHOR VALOR</div>
-  <div class="kit-img-wrap"><img data-img="24unid" alt="24 Unidades"/></div>
-  <div class="kit-body">
-    <div class="kit-treatment">24 meses</div>
-    <h3 class="kit-name">24 Unidades</h3>
-    <div class="kit-prices">
-      <span class="kit-old">De R$ 598,00</span>
-      <div class="kit-new">R$ <strong>309,60</strong></div>
-      <div class="kit-unit">R$12,90 cada</div>
-    </div>
-    <div class="kit-economy">ECONOMIZE R$ 288,40</div>
-    <div class="kit-free">🚚 FRETE GRÁTIS</div>
-    <a href="https://creme-dental-bolsonaro.pay.yampi.com.br/r/SD8TPUX3GN" target="_blank" class="kit-btn-outline">COMPRAR AGORA</a>
   </div>
 </div>
     </div>
@@ -473,29 +454,13 @@ footer a:hover{color:var(--yellow)}
   </div>
 </section>
 
-<!-- KITS 2 — 6, 12, 24 -->
+<!-- KITS 2 — 12 e 24 -->
 <div id="kits2"><section class="kits-section">
   <div class="container">
     <div class="section-label">Kits Família</div>
     <h2 class="section-title">Melhores opções para <em>toda a família</em></h2>
     <p class="section-sub">Frete grátis e economia real para quem pensa no longo prazo.</p>
-    <div class="kits-grid kits-3col">
-<div class="kit-card featured">
-  <div class="kit-badge">⭐ MAIS POPULAR</div>
-  <div class="kit-img-wrap"><img data-img="6unid" alt="6 Unidades"/></div>
-  <div class="kit-body">
-    <div class="kit-treatment">6 meses</div>
-    <h3 class="kit-name">6 Unidades</h3>
-    <div class="kit-prices">
-      <span class="kit-old">De R$ 149,00</span>
-      <div class="kit-new">R$ <strong>95,40</strong></div>
-      <div class="kit-unit">R$15,92 cada</div>
-    </div>
-    <div class="kit-economy">ECONOMIZE R$ 53,60</div>
-    <div class="kit-free">🚚 FRETE GRÁTIS</div>
-    <a href="https://creme-dental-bolsonaro.pay.yampi.com.br/r/7AAS88180X" target="_blank" class="kit-btn-primary">COMPRAR AGORA</a>
-  </div>
-</div>
+    <div class="kits-grid kits-2col">
 <div class="kit-card">
   
   <div class="kit-img-wrap"><img data-img="12unid" alt="12 Unidades"/></div>
@@ -589,8 +554,22 @@ footer a:hover{color:var(--yellow)}
 </section>
 
 <footer>
-  <div>2026 © Bolsonaro Creme Dental · Todos os direitos reservados</div>
-  <div class="footer-links"><a href="#">Termos de uso</a><a href="#">Políticas de privacidade</a></div>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="footer-logo">Bolsonaro <span>Creme Dental</span></div>
+      <p class="footer-copy">2026 © Bolsonaro Creme Dental · Todos os direitos reservados</p>
+    </div>
+    <div class="footer-contacts">
+      <a href="mailto:contato@cremedentalbolsonaro.com">✉ contato@cremedentalbolsonaro.com</a>
+      <a href="https://instagram.com/cremedentalbolsonaro" target="_blank">📷 @cremedentalbolsonaro</a>
+      <a href="https://wa.me/5562993052024" target="_blank">💬 WhatsApp: +55 62 99305-2024</a>
+      <a href="https://t.me/+5562993052024" target="_blank">✈ Telegram: +55 62 99305-2024</a>
+    </div>
+    <div class="footer-links">
+      <a href="#">Termos de uso</a>
+      <a href="#">Políticas de privacidade</a>
+    </div>
+  </div>
 </footer>
 
 <script>
